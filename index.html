@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页 - [你的名字]</title>
+    <meta name="description" content="这是[你的名字]的个人作品集网站">
+    
+    <!-- 简单的图标引入 (可选: FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. 全局样式重置 --- */
+        :root {
+            --primary-color: #2563eb; /* 主色调：蓝色 */
+            --text-color: #333;       /* 字体颜色 */
+            --bg-color: #f4f6f9;      /* 背景色 */
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- 2. 导航栏 (Header) --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            transition: 0.3s;
+        }
+
+        /* --- 3. 首屏区域 (Hero Section) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f6f9 100%);
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* --- 4. 通用 Section 样式 --- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        /* --- 5. 关于我 (About) --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .avatar-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        /* --- 6. 作品集 (Projects) --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+        }
+
+        .card-info {
+            padding: 1.5rem;
+        }
+
+        .card-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- 7. 联系方式 (Contact) --- */
+        .contact-container {
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 1.5rem;
+        }
+
+        /* --- 8. 页脚 (Footer) --- */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* --- 9. 移动端适配 (Responsive) --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">MyPortfolio.</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#projects">作品集</a></li>
+                <li><a href="#contact">联系我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 首页 / Hero 区域 -->
+    <section id="home" class="hero">
+        <h1>你好，我是 <span style="color: var(--primary-color);">张三</span></h1>
+        <p>一名前端开发工程师 & UI 设计爱好者</p>
+        <a href="#projects" class="btn">查看我的作品</a>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about">
+        <h2 class="section-title">关于我</h2>
+        <div class="about-content">
+            <!-- 你的照片放在这里 -->
+            <div class="avatar-placeholder">
+                <i class="fas fa-user fa-5x"></i> <!-- 这是一个图标占位符 -->
+                <!-- 真正使用时请用: <img src="your-photo.jpg" alt="我的照片"> -->
+            </div>
+            <div class="about-text">
+                <h3>专注于创造优秀的用户体验</h3>
+                <br>
+                <p>我拥有3年的Web开发经验，热衷于解决复杂的技术难题。我喜欢编写整洁的代码，并不断学习新技术。</p>
+                <br>
+                <h4>我的技能栈：</h4>
+                <ul style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <li style="background:#eee; padding:5px 10px; border-radius:4px;">HTML5</li>
+                    <li style="background:#eee; padding:5px 10px; border-radius:4px;">CSS3</li>
+                    <li style="background:#eee; padding:5px 10px; border-radius:4px;">JavaScript</li>
+                    <li style="background:#eee; padding:5px 10px; border-radius:4px;">React</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="projects">
+        <h2 class="section-title">我的作品</h2>
+        <div class="projects-grid">
+            <!-- 项目卡片 1 -->
+            <article class="project-card">
+                <div class="card-img">项目预览图</div>
+                <div class="card-info">
+                    <h3>个人博客系统</h3>
+                    <p>使用 Vue3 和 Node.js 开发的全栈博客平台。</p>
+                    <br>
+                    <a href="#" style="color: var(--primary-color); font-weight: bold;">查看详情 &rarr;</a>
+                </div>
+            </article>
+
+            <!-- 项目卡片 2 -->
+            <article class="project-card">
+                <div class="card-img">项目预览图</div>
+                <div class="card-info">
+                    <h3>电商数据大屏</h3>
+                    <p>基于 Echarts 的数据可视化展示页面。</p>
+                    <br>
+                    <a href="#" style="color: var(--primary-color); font-weight: bold;">查看详情 &rarr;</a>
+                </div>
+            </article>
+
+            <!-- 项目卡片 3 -->
+            <article class="project-card">
+                <div class="card-img">项目预览图</div>
+                <div class="card-info">
+                    <h3>微信小程序</h3>
+                    <p>一款用于时间管理的效率工具小程序。</p>
+                    <br>
+                    <a href="#" style="color: var(--primary-color); font-weight: bold;">查看详情 &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 联系我 -->
+    <section id="contact">
+        <h2 class="section-title">联系我</h2>
+        <div class="contact-container">
+            <p>有合作意向或想聊聊技术？欢迎随时联系我！</p>
+            <br>
+            <a href="mailto:yourname@email.com" class="btn">发送邮件</a>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-weixin"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2023 [你的名字]. All Rights Reserved.</p>
+    </footer>
+
+    <!-- 简单的平滑滚动脚本 -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
